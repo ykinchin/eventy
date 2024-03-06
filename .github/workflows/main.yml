@@ -23,5 +23,5 @@ jobs:
               run: npm run prettier
             - name: Lint app
               run: npm run lint
-            - name: Buil app
+            - name: Build app
               run: npm run build
