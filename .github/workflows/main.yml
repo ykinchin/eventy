@@ -1,16 +1,27 @@
 name: ci/cd
-on: push
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches:
+            - main
+
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: get repository code
-        uses: actions/checkout@v4
-      - name: installing node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'latest'
-      - name: install dependencies
-        run: npm install
-      - name: lint app
-        run: npm run lint
+    ci:
+        name: ci
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get repository code
+              uses: actions/checkout@v4
+            - name: Install node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: Install dependencies
+              run: npm install
+            - name: Formate by prettier app
+              run: npm run prettier
+            - name: Lint app
+              run: npm run lint
+            - name: Buil app
+              run: npm run build
