@@ -4,13 +4,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Get repository code
+       - name: get repository code
         uses: actions/checkout@v4
       - name: installing node
         uses: actions/setup-node@v4
-        with:
+        with: 
           node-version: 'latest'
-      - name: Install dependencies
-        run: npm run install
-      - name: Test app
-        run: npm run test
+      - name: install dependencies
+        run: npm ci
+      - name: lint app
+        run: npm run lint
