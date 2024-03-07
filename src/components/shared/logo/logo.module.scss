@@ -1,0 +1,17 @@
+.logo {
+    width: max-content;
+    min-width: 200px;
+    height: 100%;
+
+    .mainLetter {
+        font-size: 42px;
+        color: #3fc1c9;
+        font-weight: 700;
+    }
+
+    .logoText {
+        font-size: 26px;
+        color: #3fc1c9;
+        font-weight: 600;
+    }
+}
