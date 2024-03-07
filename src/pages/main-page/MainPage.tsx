@@ -3,7 +3,7 @@ import Advantages from './components/advantages/Advantages';
 import BottomContent from './components/bottomContent/BottomContent';
 import s from './mainPage.module.scss';
 
-const { Title, Text, Paragraph } = Typography;
+const { Title, Text } = Typography;
 
 const MainPage = () => {
     return (
