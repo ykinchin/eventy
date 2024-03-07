@@ -1,0 +1,19 @@
+.header {
+    padding: 0 40px;
+    background: rgb(60, 84, 111);
+    background: linear-gradient(
+        100deg,
+        rgba(60, 84, 111, 1) 0%,
+        rgba(74, 97, 122, 1) 50%,
+        rgba(98, 117, 139, 1) 100%
+    );
+
+    .navigation {
+        .rightMenu {
+            min-width: max-content;
+            .userLabel {
+                color: var(--neutral-grey-1);
+            }
+        }
+    }
+}
