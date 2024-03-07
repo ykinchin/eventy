@@ -6,10 +6,12 @@ import s from './mainLayout.module.scss';
 
 const MainLayout = () => {
     return (
-        <Layout>
+        <Layout style={{ height: '100%' }}>
             <MainHeader />
             <Content className={s.content}>
-                <Outlet />
+                <div className={s.wrapper}>
+                    <Outlet />
+                </div>
             </Content>
         </Layout>
     );
