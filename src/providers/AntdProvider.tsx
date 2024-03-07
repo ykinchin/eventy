@@ -14,6 +14,10 @@ const AntdProvider = ({ children }: { children: React.JSX.Element }) => {
                     },
                     Button: {
                         defaultBg: '#ffffff28',
+                        colorPrimary: '#3fc1c9',
+                        colorPrimaryActive: '#3fc1c9',
+                        colorPrimaryHover: '#3fc1c9',
+                        primaryColor: 'black',
                     },
                 },
             }}
