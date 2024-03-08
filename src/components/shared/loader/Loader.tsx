@@ -1,24 +1,12 @@
-import Lottie from 'react-lottie';
+import { RiseLoader } from 'react-spinners';
+import s from './loader.module.scss';
 
-import animationData from './loader.json';
-
-import styles from './loader.module.scss';
-
-const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice',
-    },
-};
-
-const Loader = () => (
-    <div className={styles.wrapper} data-test-id="loader">
-        <div className={styles.loader}>
-            <Lottie options={defaultOptions} />;
+const Loader = () => {
+    return (
+        <div className={s.wrapper} data-test-id="loader">
+            <RiseLoader color="#3fc1c9" loading margin={0} size={25} />
         </div>
-    </div>
-);
+    );
+};
 
 export default Loader;
