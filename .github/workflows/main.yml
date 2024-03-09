@@ -32,3 +32,4 @@ jobs:
               run: npm install
             - name: Build app
               run: npm run build
+              env: ${{ secrets.VITE_API_KEY }}
