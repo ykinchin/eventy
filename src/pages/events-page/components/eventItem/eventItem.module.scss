@@ -1,0 +1,16 @@
+.card {
+    width: 100%;
+
+    :hover {
+        cursor: pointer;
+    }
+
+    .title {
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+:global(.ant-card:hover) {
+    background-color: rgba(255, 255, 255, 0.8);
+}
