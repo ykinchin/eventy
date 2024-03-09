@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import moment from 'moment';
 import { BASE_URL } from '../../shared/constants/url';
-import { IEvent, Sort } from '../../shared/types/eventInterface';
 
 type ResponseData = {
     _embedded: {
