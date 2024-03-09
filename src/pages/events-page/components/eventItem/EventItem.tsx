@@ -1,28 +1,13 @@
-import { Card, Flex, Typography } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import { IEvent } from '../../../../shared/types/eventTypes';
+import { Card, Flex } from 'antd';
 import s from './eventItem.module.scss';
 
-type Props = {
-    event: IEvent;
-};
-
-const { Text } = Typography;
-
-const EventItem = ({ event }: Props) => {
-
+const EventItem = () => {
     return (
-        <Card
-            hoverable
-            className={s.card}
-            bordered={false}
-        >
+        <Card hoverable className={s.card} bordered={false}>
             <Flex justify="space-between" align="center">
-                <Flex vertical>
-                </Flex>
+                <Flex vertical>1</Flex>
                 <Flex gap={60} justify="space-between">
-                    <Flex vertical>
-                    </Flex>
+                    <Flex vertical>1</Flex>
                 </Flex>
             </Flex>
         </Card>
