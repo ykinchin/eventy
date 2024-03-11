@@ -1,0 +1,18 @@
+.card {
+    min-width: 360px;
+    min-height: 460px;
+    flex-direction: column;
+    padding: 24px 16px;
+    border: 1px solid white;
+    border-radius: 4px;
+    background-color: rgba(#000000, 0.5);
+
+    .logo {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+:global(.ant-tabs-nav::before) {
+    display: none;
+}
