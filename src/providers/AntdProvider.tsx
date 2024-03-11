@@ -19,6 +19,14 @@ const AntdProvider = ({ children }: { children: React.JSX.Element }) => {
                         itemColor: '#d9d9d9',
                         horizontalItemSelectedColor: '#3fc1c9',
                     },
+                    Tabs: {
+                        itemColor: '#d9d9d9',
+                        itemActiveColor: '#3fc1c9',
+                        itemSelectedColor: '#3fc1c9',
+                        inkBarColor: '#3fc1c9',
+                        fontSize: 16,
+                        lineHeight: 2,
+                    },
                     Button: {
                         defaultBg: '#ffffff28',
                         colorPrimary: '#3fc1c9',
