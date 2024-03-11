@@ -11,7 +11,9 @@ const MainHeader = () => {
     return (
         <Header className={s.header}>
             <Flex align="center" className={s.navigation}>
-                <Logo />
+                <div className={s.logo}>
+                    <Logo />
+                </div>
                 <NavMenu />
                 <Flex align="center" gap={22} className={s.rightMenu}>
                     <Text className={s.userLabel}>UserName</Text>
