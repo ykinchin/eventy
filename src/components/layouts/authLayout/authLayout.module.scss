@@ -1,0 +1,15 @@
+.content {
+    height: 100%;
+    background: center no-repeat url('../../../assets/images/bg1.jpg');
+    background-size: cover;
+
+    .wrapper {
+        height: 100%;
+        padding: 40px;
+        backdrop-filter: blur(3px);
+        background: rgba(121, 156, 212, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
