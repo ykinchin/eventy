@@ -19,7 +19,9 @@ const RegisterPage = () => {
                     <PasswordInput placeholder="Repeat password" />
                 </Flex>
             </Flex>
-            <Button htmlType="submit">Create account</Button>
+            <Button size="large" type="primary" htmlType="submit">
+                Create account
+            </Button>
         </Form>
     );
 };
