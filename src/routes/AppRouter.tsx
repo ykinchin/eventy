@@ -6,6 +6,9 @@ import AuthPage from '../pages/auth-page/AuthPage';
 import EventsPage from '../pages/events-page/EventsPage';
 import FavoritePage from '../pages/favorite-page/FavoritePage';
 import MainPage from '../pages/main-page/MainPage';
+import ErrorResult from '../pages/result-page/ErrorResult';
+import ErrorUserExistResult from '../pages/result-page/ErrorUserExistResult';
+import SuccessResult from '../pages/result-page/SuccessResult';
 import { PATHS } from '../shared/constants/paths';
 
 const AppRouter = () => {
@@ -19,6 +22,15 @@ const AppRouter = () => {
                 </Route>
                 <Route path={PATHS.auth} element={<AuthLayout />}>
                     <Route index element={<AuthPage />} />
+                    <Route
+                        path={PATHS.successResult}
+                        element={<SuccessResult />}
+                    />
+                    <Route path={PATHS.errorResult} element={<ErrorResult />} />
+                    <Route
+                        path={PATHS.errorUserExistResult}
+                        element={<ErrorUserExistResult />}
+                    />
                 </Route>
             </Route>
         </Routes>
