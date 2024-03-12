@@ -6,6 +6,7 @@ type Props = {
     block?: boolean;
     size?: 'large' | 'middle' | 'small';
     onClick?: () => void;
+    backgroundColor?: string;
 };
 
 const CustomButton = ({
@@ -14,9 +15,16 @@ const CustomButton = ({
     block = false,
     size,
     onClick,
+    backgroundColor,
 }: Props) => {
     return (
-        <Button type={type} block={block} size={size} onClick={onClick}>
+        <Button
+            style={{ backgroundColor }}
+            type={type}
+            block={block}
+            size={size}
+            onClick={onClick}
+        >
             {children}
         </Button>
     );
