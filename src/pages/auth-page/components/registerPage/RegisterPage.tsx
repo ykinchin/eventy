@@ -1,39 +1,25 @@
-import { Flex, Form } from 'antd';
-import CustomButton from '../../../../components/shared/customButton/CustomButton';
+import { Button, Flex, Form } from 'antd';
 import LoginInput from '../../../../components/shared/loginInput/LoginInput';
 import PasswordInput from '../../../../components/shared/passwordInput/PasswordInput';
 
 const RegisterPage = () => {
-    const handleChange = () => {};
-
     return (
         <Form
             style={{
-                height: '220px',
+                height: '260px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
             }}
         >
             <Flex vertical>
-                <Form.Item required>
-                    <LoginInput onChange={handleChange} />
-                </Form.Item>
-                <Flex vertical gap={6}>
-                    <Form.Item noStyle required>
-                        <PasswordInput />
-                    </Form.Item>
-                    <Form.Item required>
-                        <PasswordInput
-                            placeholder="Repeat password"
-                            visibilityToggle={false}
-                        />
-                    </Form.Item>
+                <LoginInput onChange={() => {}} />
+                <Flex vertical>
+                    <PasswordInput />
+                    <PasswordInput placeholder="Repeat password" />
                 </Flex>
             </Flex>
-            <CustomButton block size="large">
-                Create account
-            </CustomButton>
+            <Button htmlType="submit">Create account</Button>
         </Form>
     );
 };

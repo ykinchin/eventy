@@ -1,20 +1,30 @@
-import Password from 'antd/es/input/Password';
+import { Form, Input } from 'antd';
+import { ChangeEvent } from 'react';
 
 type Props = {
-    placeholder: string;
-    visibilityToggle: boolean;
+    value?: string;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    withHelp?: boolean;
+    placeholder?: string;
 };
 
 const PasswordInput = ({
     placeholder = 'Password',
-    visibilityToggle,
+    value,
+    onChange,
 }: Partial<Props>) => {
     return (
-        <Password
-            visibilityToggle={visibilityToggle}
-            placeholder={placeholder}
-            size="large"
-        />
+        <Form.Item name={placeholder} required>
+            <Input.Password
+                name={placeholder.toLocaleLowerCase()}
+                placeholder={placeholder}
+                style={{ fontSize: 14, lineHeight: '180%' }}
+                value={value}
+                onChange={onChange}
+                autoComplete="off"
+                size="large"
+            />
+        </Form.Item>
     );
 };
 

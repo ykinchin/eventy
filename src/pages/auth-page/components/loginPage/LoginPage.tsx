@@ -15,20 +15,16 @@ const LoginPage = () => {
             size="large"
             onFinish={handleFinish}
             style={{
-                height: '220px',
+                height: '260px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
             }}
         >
             <Flex vertical>
-                <Form.Item>
-                    <LoginInput onChange={handleChange} />
-                </Form.Item>
+                <LoginInput onChange={handleChange} />
                 <Flex vertical>
-                    <Form.Item required>
-                        <PasswordInput />
-                    </Form.Item>
+                    <PasswordInput />
                 </Flex>
             </Flex>
             <Button type="primary" block size="large" htmlType="submit">
