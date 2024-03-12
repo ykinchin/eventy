@@ -20,6 +20,14 @@ jobs:
               run: npm run prettier
             - name: Lint app
               run: npm run lint
+              env:
+                  VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+                  VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
+                  VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+                  VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
+                  VITE_FIREBASE_MESSAGING_SENDER: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+                  VITE_FIREBASE_ID: ${{ secrets.VITE_FIREBASE_ID }}
+                  VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
 
     cd:
         name: cd
@@ -32,4 +40,3 @@ jobs:
               run: npm install
             - name: Build app
               run: npm run build
-              env: ${{ secrets.VITE_API_KEY }}
