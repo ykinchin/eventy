@@ -20,7 +20,7 @@ const useLogin = () => {
             navigate(PATHS.main);
         } catch (error: unknown) {
             navigate(PATHS.errorResult, {
-                state: { prevPath: PATHS.auth },
+                state: { prevPath: PATHS.registration },
                 replace: true,
             });
         } finally {
