@@ -32,12 +32,12 @@ const useRegistration = () => {
                 const errorCode = error.code;
                 if (errorCode === 'auth/email-already-in-use') {
                     navigate(PATHS.errorUserExistResult, {
-                        state: { prevPath: PATHS.auth },
+                        state: { prevPath: PATHS.registration },
                         replace: true,
                     });
                 } else {
                     navigate(PATHS.errorResult, {
-                        state: { prevPath: PATHS.auth },
+                        state: { prevPath: PATHS.registration },
                         replace: true,
                     });
                 }
