@@ -5,6 +5,15 @@ export type ResponseType = {
     page: Page;
 };
 
+export type PartialEvent = {
+    name: string;
+    date: string;
+    genre: string[];
+    country: string;
+    city: string;
+    id: string;
+};
+
 export type Events = {
     events: EventType[];
 };
