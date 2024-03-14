@@ -7,7 +7,7 @@ import {
     Sort,
 } from '../../shared/types/eventTypes';
 
-type TranformedResponse = {
+type eventsResponse = {
     events: PartialEvent[];
     totalElements: number;
 };
@@ -19,11 +19,27 @@ type QueryParams = {
     city?: string | null;
 };
 
+const transformEvents = (response: ResponseType): eventsResponse => ({
+    events: response._embedded.events.map((event) => ({
+        name: event.name,
+        id: event.id,
+        city: event?._embedded?.venues?.[0]?.city?.name || 'Unknown City',
+        country:
+            event?._embedded?.venues?.[0]?.country?.name || 'Unknown Country',
+        genre:
+            event.classifications?.map(
+                (classification) => classification.segment.name,
+            ) || [],
+        date: event.dates.start.localDate,
+    })),
+    totalElements: response.page.totalElements,
+});
+
 export const eventApi = createApi({
     reducerPath: 'events',
     baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
     endpoints: (builder) => ({
-        getEvents: builder.query<TranformedResponse, QueryParams>({
+        getEvents: builder.query<eventsResponse, QueryParams>({
             query: ({ page, searchValue, sort, city }) => {
                 const formattedDate = moment()
                     .utc()
@@ -40,26 +56,7 @@ export const eventApi = createApi({
                 }
                 return queryString;
             },
-            transformResponse: (
-                response: ResponseType,
-            ): TranformedResponse => ({
-                events: response._embedded.events.map((event) => ({
-                    name: event.name,
-                    id: event.id,
-                    city:
-                        event?._embedded?.venues?.[0]?.city?.name ||
-                        'Unknown City',
-                    country:
-                        event?._embedded?.venues?.[0]?.country?.name ||
-                        'Unknown Country',
-                    genre:
-                        event.classifications?.map(
-                            (classification) => classification.segment.name,
-                        ) || [],
-                    date: event.dates.start.localDate,
-                })),
-                totalElements: response.page.totalElements,
-            }),
+            transformResponse: transformEvents,
         }),
     }),
 });
