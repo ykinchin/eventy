@@ -15,7 +15,11 @@ const MainHeader = () => {
     const { logOut, currentUser, isLoading } = useContext(AuthContext);
     const navigate = useNavigate();
     const handleOnClick = () => {
-        currentUser ? logOut() : navigate(PATHS.auth);
+        if (currentUser) {
+            logOut();
+        } else {
+            navigate(PATHS.auth);
+        }
     };
 
     return (
