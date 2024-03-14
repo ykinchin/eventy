@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import moment from 'moment';
 import { BASE_URL } from '../../shared/constants/url';
-import { EventType, Sort } from '../../shared/types/eventTypes';
+import {
+    PartialEvent,
+    ResponseType,
+    Sort,
+} from '../../shared/types/eventTypes';
 
-type ResponseData = {
-    _embedded: {
-        events: EventType[];
-    };
-    page: {
-        totalElements: number;
-    };
+type TranformedResponse = {
+    events: PartialEvent[];
+    totalElements: number;
 };
 
 type QueryParams = {
@@ -23,10 +23,7 @@ export const eventApi = createApi({
     reducerPath: 'events',
     baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
     endpoints: (builder) => ({
-        getEvents: builder.query<
-            { events: EventType[]; totalElements: number },
-            QueryParams
-        >({
+        getEvents: builder.query<TranformedResponse, QueryParams>({
             query: ({ page, searchValue, sort, city }) => {
                 const formattedDate = moment()
                     .utc()
@@ -43,8 +40,24 @@ export const eventApi = createApi({
                 }
                 return queryString;
             },
-            transformResponse: (response: ResponseData) => ({
-                events: response._embedded?.events,
+            transformResponse: (
+                response: ResponseType,
+            ): TranformedResponse => ({
+                events: response._embedded.events.map((event) => ({
+                    name: event.name,
+                    id: event.id,
+                    city:
+                        event?._embedded?.venues?.[0]?.city?.name ||
+                        'Unknown City',
+                    country:
+                        event?._embedded?.venues?.[0]?.country?.name ||
+                        'Unknown Country',
+                    genre:
+                        event.classifications?.map(
+                            (classification) => classification.segment.name,
+                        ) || [],
+                    date: event.dates.start.localDate,
+                })),
                 totalElements: response.page.totalElements,
             }),
         }),
