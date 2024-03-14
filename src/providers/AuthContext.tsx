@@ -1,8 +1,6 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { ReactNode, createContext, useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase/firebase';
-import { PATHS } from '../shared/constants/paths';
 
 type Props = {
     children?: ReactNode;
@@ -21,7 +19,6 @@ export const AuthContext = createContext<ContextType>({
 });
 
 export const AuthProvider = ({ children }: Props) => {
-    const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -46,8 +43,6 @@ export const AuthProvider = ({ children }: Props) => {
             setIsLoading(true);
             await signOut(auth);
             setCurrentUser(null);
-        } catch {
-            navigate(PATHS.errorDefault, { state: { prevPath: PATHS.auth } });
         } finally {
             setIsLoading(false);
         }
@@ -59,7 +54,7 @@ export const AuthProvider = ({ children }: Props) => {
             logOut,
             isLoading,
         }),
-        [currentUser, isLoading, logOut],
+        [currentUser, isLoading],
     );
 
     return (
