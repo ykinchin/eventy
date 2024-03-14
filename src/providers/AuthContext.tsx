@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }: Props) => {
             logOut,
             isLoading,
         }),
-        [currentUser, isLoading],
+        [currentUser, isLoading, logOut],
     );
 
     return (
