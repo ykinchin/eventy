@@ -1,5 +1,14 @@
 export type Sort = 'name,desc' | 'relevance,desc' | 'date,asc';
 
+export type ResponseType = {
+    _embedded: Events;
+    page: Page;
+};
+
+export type Events = {
+    events: EventType[];
+};
+
 type Link = {
     href: string;
     templated: boolean;
@@ -75,7 +84,7 @@ type Image = {
     fallback: boolean;
 };
 
-export type IEvent = {
+export type EventType = {
     name: string;
     type: string;
     id: string;
@@ -123,8 +132,4 @@ export type Page = {
     totalElements: number;
     totalPages: number;
     number: number;
-};
-
-export type EventsData = {
-    events: IEvent[];
 };
