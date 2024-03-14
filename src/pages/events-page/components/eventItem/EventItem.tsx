@@ -13,7 +13,7 @@ const { Text } = Typography;
 
 const EventItem = ({ event }: Props) => {
     const [isHovered, setIsHovered] = useState(false);
-    console.log(event);
+
     const handleMouseEnter = () => {
         setIsHovered(true);
     };
