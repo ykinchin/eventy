@@ -8,5 +8,6 @@ export const PATHS = {
     registration: '/auth/registration',
     successResult: '/auth/success',
     errorResult: '/auth/error',
+    errorDefault: '/auth/error-default',
     errorUserExistResult: '/auth/error-exist',
 };

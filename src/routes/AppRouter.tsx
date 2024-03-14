@@ -6,6 +6,7 @@ import AuthPage from '../pages/auth-page/AuthPage';
 import EventsPage from '../pages/events-page/EventsPage';
 import FavoritePage from '../pages/favorite-page/FavoritePage';
 import MainPage from '../pages/main-page/MainPage';
+import ErrorDefault from '../pages/result-page/ErrorDefault';
 import ErrorResult from '../pages/result-page/ErrorResult';
 import ErrorUserExistResult from '../pages/result-page/ErrorUserExistResult';
 import SuccessResult from '../pages/result-page/SuccessResult';
@@ -27,6 +28,10 @@ const AppRouter = () => {
                         element={<SuccessResult />}
                     />
                     <Route path={PATHS.errorResult} element={<ErrorResult />} />
+                    <Route
+                        path={PATHS.errorDefault}
+                        element={<ErrorDefault />}
+                    />
                     <Route
                         path={PATHS.errorUserExistResult}
                         element={<ErrorUserExistResult />}
