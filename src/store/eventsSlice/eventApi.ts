@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import moment from 'moment';
 import { BASE_URL } from '../../shared/constants/url';
-import { IEvent, Sort } from '../../shared/types/eventTypes';
+import { EventType, Sort } from '../../shared/types/eventTypes';
 
 type ResponseData = {
     _embedded: {
-        events: IEvent[];
+        events: EventType[];
     };
     page: {
         totalElements: number;
@@ -24,7 +24,7 @@ export const eventApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
     endpoints: (builder) => ({
         getEvents: builder.query<
-            { events: IEvent[]; totalElements: number },
+            { events: EventType[]; totalElements: number },
             QueryParams
         >({
             query: ({ page, searchValue, sort, city }) => {
