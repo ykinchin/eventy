@@ -12,6 +12,7 @@ type Props = {
 const { Text } = Typography;
 
 const EventItem = ({ event }: Props) => {
+    const [isFavorite, setIsFavorite] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
 
     const handleMouseEnter = () => {
@@ -25,6 +26,10 @@ const EventItem = ({ event }: Props) => {
 
     const handleClick = () => {
         navigate('');
+    };
+
+    const handleOnFavorite = () => {
+        setIsFavorite(!isFavorite);
     };
 
     return (
@@ -58,9 +63,11 @@ const EventItem = ({ event }: Props) => {
                 </Flex>
             </Card>
             <CustomButton
+                onClick={handleOnFavorite}
+                backgroundColor={isFavorite ? '#FF603B' : ''}
                 className={`${s.button} ${!isHovered && s.hiddenButton}`}
             >
-                Add event
+                {isFavorite ? 'Remove event' : 'Add event'}
             </CustomButton>
         </Flex>
     );
