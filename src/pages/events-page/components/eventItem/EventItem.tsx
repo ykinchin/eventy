@@ -1,15 +1,26 @@
 import { Card, Flex, Typography } from 'antd';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { IEvent } from '../../../../shared/types/eventTypes';
+import CustomButton from '../../../../components/shared/customButton/CustomButton';
+import { EventType } from '../../../../shared/types/eventTypes';
 import s from './eventItem.module.scss';
 
 type Props = {
-    event: IEvent;
+    event: EventType;
 };
 
 const { Text } = Typography;
 
 const EventItem = ({ event }: Props) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
     const navigate = useNavigate();
 
     const city = event?._embedded?.venues?.[0]?.city;
@@ -25,30 +36,41 @@ const EventItem = ({ event }: Props) => {
     };
 
     return (
-        <Card
-            hoverable
-            className={s.card}
-            bordered={false}
-            onClick={handleClick}
+        <Flex
+            className={s.wrapper}
+            onMouseOver={handleMouseEnter}
+            onMouseOut={handleMouseLeave}
         >
-            <Flex justify="space-between" align="center">
-                <Flex vertical>
-                    <Text>{genres && genres}</Text>
-                    <Text className={s.title}>{event.name}</Text>
-                </Flex>
-                <Flex
-                    justify="space-between"
-                    align="center"
-                    style={{ width: 350 }}
-                >
+            <Card
+                hoverable
+                className={s.card}
+                bordered={false}
+                onClick={handleClick}
+            >
+                <Flex justify="space-between" align="center">
                     <Flex vertical>
-                        <Text>{country?.name}</Text>
-                        <Text>{city?.name}</Text>
+                        <Text>{genres && genres}</Text>
+                        <Text className={s.title}>{event.name}</Text>
                     </Flex>
-                    <Text>{event.dates.start.localDate}</Text>
+                    <Flex
+                        justify="space-between"
+                        align="center"
+                        style={{ width: 350 }}
+                    >
+                        <Flex vertical>
+                            <Text>{country?.name}</Text>
+                            <Text>{city?.name}</Text>
+                        </Flex>
+                        <Text>{event.dates.start.localDate}</Text>
+                    </Flex>
                 </Flex>
-            </Flex>
-        </Card>
+            </Card>
+            <CustomButton
+                className={`${s.button} ${!isHovered && s.hiddenButton}`}
+            >
+                Add event
+            </CustomButton>
+        </Flex>
     );
 };
 
