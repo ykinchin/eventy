@@ -16,17 +16,18 @@ const EventList = () => {
     const debouncedSearch = useDebounce(searchValue, 300);
     const debouncedCity = useDebounce(cityValue, 300);
 
-    const { data, isLoading } = useGetEventsQuery({
-        page: currentPage,
-        searchValue: debouncedSearch,
-        city: debouncedCity,
-        sort: sortValue,
-    });
+    const { data: { events, totalElements } = {}, isLoading } =
+        useGetEventsQuery({
+            page: currentPage,
+            searchValue: debouncedSearch,
+            city: debouncedCity,
+            sort: sortValue,
+        });
 
     const pagesNumber =
-        data?.totalElements && data?.totalElements > 990
+        totalElements && totalElements > 990
             ? 990
-            : data && data?.totalElements - 10;
+            : totalElements && totalElements - 10;
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -76,7 +77,7 @@ const EventList = () => {
                         </Flex>
                         <List
                             style={{ height: '70vh', overflow: 'auto' }}
-                            dataSource={data?.events}
+                            dataSource={events}
                             renderItem={(item) => (
                                 <List.Item key={item.id}>
                                     <EventItem event={item} />
