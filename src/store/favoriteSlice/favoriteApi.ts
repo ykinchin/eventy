@@ -8,7 +8,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 
-type favoriteData = {
+type FavoriteData = {
     email: string;
     eventId: string;
 };
@@ -38,7 +38,7 @@ export const favoriteApi = createApi({
             providesTags: ['Favorite'],
         }),
 
-        addFavorite: builder.mutation<null, favoriteData>({
+        addFavorite: builder.mutation<null, FavoriteData>({
             async queryFn(data) {
                 try {
                     const ref = doc(db, 'user', data.email);
@@ -54,7 +54,7 @@ export const favoriteApi = createApi({
             },
             invalidatesTags: ['Favorite'],
         }),
-        removeFavorite: builder.mutation<null, favoriteData>({
+        removeFavorite: builder.mutation<null, FavoriteData>({
             async queryFn(data) {
                 try {
                     const ref = doc(db, 'user', data.email);
