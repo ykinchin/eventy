@@ -1,8 +1,14 @@
 import { Card, Flex, Typography } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import CustomButton from '../../../../components/shared/customButton/CustomButton';
+import { useAuth } from '../../../../hooks/useAuth';
 import { PartialEvent } from '../../../../shared/types/eventTypes';
+import {
+    useAddFavoriteMutation,
+    useFetchFavoriteQuery,
+    useRemoveFavoriteMutation,
+} from '../../../../store/favoriteSlice/favoriteApi';
 import s from './eventItem.module.scss';
 
 type Props = {
@@ -12,8 +18,15 @@ type Props = {
 const { Text } = Typography;
 
 const EventItem = ({ event }: Props) => {
+    const { currentUser } = useAuth();
     const [isFavorite, setIsFavorite] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate();
+    const [addFavorite] = useAddFavoriteMutation();
+    const [removeFavorite] = useRemoveFavoriteMutation();
+    const { data: favoriteData } = useFetchFavoriteQuery(
+        currentUser ? currentUser : '',
+    );
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -22,14 +35,33 @@ const EventItem = ({ event }: Props) => {
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
-    const navigate = useNavigate();
 
     const handleClick = () => {
         navigate('');
     };
 
+    useEffect(() => {
+        if (favoriteData?.some((item) => item.eventId === event.id)) {
+            setIsFavorite(true);
+        }
+    }, [favoriteData, event.id]);
+
     const handleOnFavorite = () => {
-        setIsFavorite(!isFavorite);
+        if (currentUser) {
+            if (isFavorite) {
+                removeFavorite({
+                    email: currentUser,
+                    eventId: event.id,
+                });
+                setIsFavorite(false);
+            } else {
+                addFavorite({
+                    email: currentUser,
+                    eventId: event.id,
+                });
+                setIsFavorite(true);
+            }
+        }
     };
 
     return (
@@ -62,13 +94,15 @@ const EventItem = ({ event }: Props) => {
                     </Flex>
                 </Flex>
             </Card>
-            <CustomButton
-                onClick={handleOnFavorite}
-                backgroundColor={isFavorite ? '#FF603B' : ''}
-                className={`${s.button} ${!isHovered && s.hiddenButton}`}
-            >
-                {isFavorite ? 'Remove event' : 'Add event'}
-            </CustomButton>
+            {currentUser && (
+                <CustomButton
+                    onClick={handleOnFavorite}
+                    backgroundColor={isFavorite ? '#FF603B' : ''}
+                    className={`${s.button} ${!isHovered && s.hiddenButton}`}
+                >
+                    {isFavorite ? 'Remove event' : 'Add event'}
+                </CustomButton>
+            )}
         </Flex>
     );
 };
