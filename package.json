@@ -13,6 +13,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.3",
     "@reduxjs/toolkit": "^2.2.1",
     "antd": "^5.15.1",
     "axios": "^1.6.7",
