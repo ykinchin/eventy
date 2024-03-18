@@ -1,6 +1,7 @@
 import { Menu, MenuProps } from 'antd';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../../../../hooks/useAuth';
 import { PATHS } from '../../../../shared/constants/paths';
 import s from './navMenu.module.scss';
 
@@ -20,11 +21,17 @@ const items: MenuProps['items'] = [
 ];
 
 const NavMenu = () => {
-    const [current, setCurrent] = useState('mail');
+    const { currentUser } = useAuth();
+    const [current, setCurrent] = useState('');
+    const location = useLocation();
 
     const onClick: MenuProps['onClick'] = (e) => {
         setCurrent(e.key);
     };
+
+    useEffect(() => {
+        setCurrent(location.pathname);
+    }, [location.pathname]);
 
     return (
         <Menu
