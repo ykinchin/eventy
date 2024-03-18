@@ -13,7 +13,8 @@ type eventsResponse = {
 };
 
 type QueryParams = {
-    page: number;
+    eventIds?: string[] | null;
+    page?: number;
     searchValue?: string | null;
     sort?: Sort;
     city?: string | null;
@@ -40,11 +41,17 @@ export const eventApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
     endpoints: (builder) => ({
         getEvents: builder.query<eventsResponse, QueryParams>({
-            query: ({ page, searchValue, sort, city }) => {
+            query: ({ page, searchValue, sort, city, eventIds }) => {
                 const formattedDate = moment()
                     .utc()
                     .format('YYYY-MM-DDTHH:mm:ss[Z]');
-                let queryString = `events.json?apikey=${import.meta.env.VITE_API_KEY}&size=10&page=${page}&startDateTime=${formattedDate}`;
+                let queryString = `events.json?apikey=${import.meta.env.VITE_API_KEY}&size=${page ? '10' : '200'}&startDateTime=${formattedDate}`;
+                if (eventIds && eventIds.length > 0) {
+                    queryString += `&id=${eventIds.join(',')}`;
+                }
+                if (page) {
+                    queryString += `&page=${page}`;
+                }
                 if (searchValue) {
                     queryString += `&keyword=${searchValue}`;
                 }
