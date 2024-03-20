@@ -1,4 +1,5 @@
 import { Card, Result } from 'antd';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '../customButton/CustomButton';
 import s from './resultCard.module.scss';
@@ -31,3 +32,11 @@ const ResultCard = ({ status, subtitle, title, btnTitle, link }: Props) => {
 };
 
 export default ResultCard;
+
+ResultCard.propTypes = {
+    status: PropTypes.oneOf(['success', 'error']).isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string,
+    btnTitle: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+};
