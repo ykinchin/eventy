@@ -1,0 +1,18 @@
+.list {
+    background-color: white;
+    z-index: 1;
+
+    .item {
+        width: 100%;
+        padding: 10px 14px;
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+
+        .itemTitle {
+            max-width: 75%;
+        }
+    }
+}
