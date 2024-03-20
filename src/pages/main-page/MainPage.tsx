@@ -1,6 +1,5 @@
 import { Flex, Typography } from 'antd';
 import Advantages from './components/advantages/Advantages';
-import BottomContent from './components/bottomContent/BottomContent';
 import s from './mainPage.module.scss';
 
 const { Title, Text } = Typography;
@@ -18,7 +17,6 @@ const MainPage = () => {
                     </Flex>
                     <Advantages />
                 </Flex>
-                <BottomContent />
             </div>
         </>
     );
