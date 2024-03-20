@@ -20,8 +20,12 @@
 
         .rightMenu {
             min-width: max-content;
-            .userLabel {
-                color: var(--neutral-grey-1);
+
+            .userInfo {
+                width: 200px;
+                .userLabel {
+                    color: var(--neutral-grey-1);
+                }
             }
         }
     }
