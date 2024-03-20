@@ -15,22 +15,14 @@ const SearchComponent = () => {
     const [searchValue, setSearchValue] = useState('');
     const debouncedSearch = useDebounce(searchValue, 300);
 
-    const handleSearchClick = () => {
-        if (searchValue) {
-            navigate(`/events/search?query=${searchValue}`);
-            if (currentUser) {
-                addHistory({ email: currentUser, searchValue });
-            }
-        }
-    };
-    const [addHistory] = useAddHistoryMutation();
-
     const { data: { events } = {} } = useGetFilteredEventsQuery(
         {
             searchValue: debouncedSearch,
         },
         { skip: debouncedSearch === '' },
     );
+
+    const [addHistory] = useAddHistoryMutation();
 
     const handleInputBlur = () => {
         setTimeout(() => setInputFocus(false), 300);
@@ -43,7 +35,16 @@ const SearchComponent = () => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.currentTarget.value);
     };
-    console.log(inputFocus);
+
+    const handleSearchClick = () => {
+        if (searchValue) {
+            navigate(`/events/search?query=${searchValue}`);
+            if (currentUser) {
+                addHistory({ email: currentUser, searchValue });
+            }
+        }
+    };
+
     return (
         <Flex gap={20}>
             <Flex vertical style={{ position: 'relative' }}>

@@ -8,14 +8,12 @@ type Props = {
 
 const { Text } = Typography;
 
-const RowItem = ({ title, description }: Props) => {
-    return (
-        <Flex gap={10} align="baseline">
-            <Text style={{ fontSize: 22, fontWeight: 500 }}>{title}</Text>
-            <Text style={{ fontSize: 18 }}>{description}</Text>
-        </Flex>
-    );
-};
+const RowItem = ({ title, description }: Props) => (
+    <Flex gap={10} align="baseline">
+        <Text style={{ fontSize: 22, fontWeight: 500 }}>{title}</Text>
+        <Text style={{ fontSize: 18 }}>{description}</Text>
+    </Flex>
+);
 
 export default RowItem;
 
