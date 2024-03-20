@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { PATHS } from '../../shared/constants/paths';
 import AuthCard from './components/authCard/AuthCard';
 
-const AuthPage = () => {
+export const AuthPage = () => {
     const { currentUser, isLoading } = useAuth();
 
     if (currentUser) return <Navigate to={PATHS.main} replace />;
