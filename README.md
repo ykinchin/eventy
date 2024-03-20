@@ -30,12 +30,13 @@ _Приложение для отслеживания мероприятий_
 
 -   [x] Используем [Modern Redux with Redux Toolkit](https://github.com/ykinchin/eventy/blob/main/src/store/store.ts)
 -   [x] Используем [слайсы](https://github.com/ykinchin/eventy/blob/main/src/store/historySlice/historySlice.ts)
--   [] Есть хотя бы одна кастомная мидлвара
+-   [x] Есть хотя бы одна [кастомная мидлвара](https://github.com/ykinchin/eventy/blob/main/src/store/middleware/loggerMiddleware.ts)
 -   [x] Используется [RTK Query](https://github.com/ykinchin/eventy/blob/main/src/store/eventsSlice/eventApi.ts)
 -   [x] Используется [Transforming Responses](https://github.com/ykinchin/eventy/blob/main/src/shared/helpers/apiHelpers.ts)
 
 ### 2 уровень (необязательный)
 
 -   [x] Используeтся TypeScript
--   [x] Используется Firebase для [учетных записей пользователей](https://github.com/ykinchin/eventy/blob/main/src/hooks/useRegistration.ts) и их [Избранного](https://github.com/ykinchin/eventy/blob/main/src/store/favoriteSlice/favoriteApi.ts) и [Истории поиска](https://github.com/ykinchin/eventy/blob/main/src/store/historySlice/historyApi.ts)
+-   [x] Используется Firebase для [учетных записей пользователей](https://github.com/ykinchin/eventy/blob/main/src/hooks/useRegistration.ts) и их [Избранного](https://github.com/ykinchin/eventy/blob/main/src/store/favoriteSlice/favoriteApi.ts) и [Истории поиска](https://github.com/ykinchin/eventy/blob/main/src/store/historySlice/historyApi.ts). Обновление информации через инвалидацию кеша RTK Query
 -   [x] Настроен [CI / CD](https://github.com/ykinchin/eventy/blob/main/.github/workflows/main.yml)
+-   [x] Реализована [виртуализация списка](https://github.com/ykinchin/eventy/blob/main/src/components/shared/eventList/EventList.tsx)
