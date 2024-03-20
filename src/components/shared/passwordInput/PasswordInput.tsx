@@ -25,13 +25,11 @@ const PasswordInput = ({
                     message: '',
                 },
                 {
-                    pattern:
-                        /^(?=.*[A-Z])(?=.*\d)(?=.*[a-zA-Z])[A-Za-z\d]{8,}$/,
+                    pattern: /.{6,}/,
 
                     message: withHelp ? (
                         <div style={{ fontSize: 12, width: 320 }}>
-                            Password must contain at least 8 characters,
-                            including one uppercase letter and one number
+                            Password must contain at least 6 characters
                         </div>
                     ) : (
                         ''
