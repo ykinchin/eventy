@@ -56,6 +56,7 @@ const SearchComponent = () => {
                     onChange={handleInputChange}
                     onSearch={handleSearchClick}
                 />
+
                 {inputFocus && searchValue && (
                     <div>
                         <ResultList events={events} />

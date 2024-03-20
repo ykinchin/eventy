@@ -38,6 +38,7 @@ const EventsPage = () => {
                 >
                     <Flex vertical gap={40}>
                         <Title level={3}>Explore world events</Title>
+
                         {isError ? (
                             <Empty />
                         ) : (
