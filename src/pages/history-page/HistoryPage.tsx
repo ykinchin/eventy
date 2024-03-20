@@ -13,6 +13,7 @@ const { Title } = Typography;
 const HistoryPage = () => {
     const dispatch = useAppDispatch();
     const { currentUser } = useAuth();
+
     const { data, isLoading, isError } = useGetHistoryQuery(currentUser, {
         skip: !currentUser,
     });
