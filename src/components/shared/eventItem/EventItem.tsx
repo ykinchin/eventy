@@ -1,3 +1,4 @@
+import { LoadingOutlined } from '@ant-design/icons';
 import { Card, Flex, Typography } from 'antd';
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -22,9 +23,12 @@ const EventItem = ({ event }: Props) => {
     const [isHovered, setIsHovered] = useState(false);
     const navigate = useNavigate();
 
-    const [addFavorite] = useAddFavoriteMutation();
-    const [removeFavorite] = useRemoveFavoriteMutation();
-    const { data: favoriteData } = useFetchFavoriteQuery(currentUser);
+    const [addFavorite, { isLoading: loadingAdd }] = useAddFavoriteMutation();
+    const [removeFavorite, { isLoading: loadingRemove }] =
+        useRemoveFavoriteMutation();
+    const { data: favoriteData } = useFetchFavoriteQuery(currentUser, {
+        skip: !currentUser,
+    });
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -35,7 +39,7 @@ const EventItem = ({ event }: Props) => {
     };
 
     const handleClick = () => {
-        navigate('');
+        navigate(`/${event.id}`);
     };
 
     const checkIsFavorite = useMemo(() => {
@@ -43,7 +47,7 @@ const EventItem = ({ event }: Props) => {
         return favoriteData.some((item) => item.eventId === event.id);
     }, [favoriteData, event.id]);
 
-    const handleOnFavorite = () => {
+    const handleToggleFavorite = () => {
         if (currentUser) {
             if (checkIsFavorite) {
                 removeFavorite({
@@ -58,6 +62,14 @@ const EventItem = ({ event }: Props) => {
             }
         }
     };
+    const buttonText =
+        loadingRemove || loadingAdd ? (
+            <LoadingOutlined />
+        ) : checkIsFavorite ? (
+            'Remove event'
+        ) : (
+            'Add event'
+        );
 
     return (
         <Flex
@@ -91,11 +103,11 @@ const EventItem = ({ event }: Props) => {
             </Card>
             {currentUser && (
                 <CustomButton
-                    onClick={handleOnFavorite}
+                    onClick={handleToggleFavorite}
                     backgroundColor={checkIsFavorite ? '#FF603B' : ''}
                     className={`${s.button} ${!isHovered && s.hiddenButton}`}
                 >
-                    {checkIsFavorite ? 'Remove event' : 'Add event'}
+                    {buttonText}
                 </CustomButton>
             )}
         </Flex>
