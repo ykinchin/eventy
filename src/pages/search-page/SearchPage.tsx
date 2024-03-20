@@ -25,7 +25,7 @@ const SearchPage = () => {
                 <Loader />
             ) : (
                 <>
-                    {isError && events?.length === 0 ? (
+                    {isError ? (
                         <Empty />
                     ) : (
                         <Flex vertical gap={40}>

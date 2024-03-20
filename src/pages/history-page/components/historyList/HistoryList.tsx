@@ -11,6 +11,7 @@ type Props = {
 const HistoryList = ({ history }: Props) => {
     const { currentUser } = useAuth();
     const [removeHistory] = useRemoveHistoryMutation();
+
     const handleOnRemove = (id: string) => {
         removeHistory({ email: currentUser, historyId: id, history });
     };

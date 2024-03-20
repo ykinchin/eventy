@@ -18,19 +18,17 @@ const CustomButton = ({
     onClick,
     backgroundColor,
     className,
-}: Props) => {
-    return (
-        <Button
-            className={className}
-            style={{ backgroundColor }}
-            type={type}
-            block={block}
-            size={size}
-            onClick={onClick}
-        >
-            {children}
-        </Button>
-    );
-};
+}: Props) => (
+    <Button
+        className={className}
+        style={{ backgroundColor }}
+        type={type}
+        block={block}
+        size={size}
+        onClick={onClick}
+    >
+        {children}
+    </Button>
+);
 
 export default CustomButton;

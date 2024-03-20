@@ -12,12 +12,12 @@ import {
     SingleEventResponse,
 } from '../../shared/types/eventTypes';
 
-type AllEventsResponse = {
+type AllEvents = {
     events: PartialEvent[];
     totalElements: number;
 };
 
-type FilteredEventsResponse = {
+type FilteredEvents = {
     events: FilteredEvent[];
 };
 
@@ -37,7 +37,7 @@ export const eventApi = createApi({
     reducerPath: 'events',
     baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
     endpoints: (builder) => ({
-        getAllEvents: builder.query<AllEventsResponse, AllEventsParams>({
+        getAllEvents: builder.query<AllEvents, AllEventsParams>({
             query: ({ page, eventIds, searchValue }) => {
                 const formattedDate = moment()
                     .utc()
@@ -63,10 +63,7 @@ export const eventApi = createApi({
             },
             transformResponse: transformSingleEvents,
         }),
-        getFilteredEvents: builder.query<
-            FilteredEventsResponse,
-            FilteredEventsParams
-        >({
+        getFilteredEvents: builder.query<FilteredEvents, FilteredEventsParams>({
             query: ({ searchValue }) => {
                 const formattedDate = moment()
                     .utc()

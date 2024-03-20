@@ -21,51 +21,40 @@ const {
     SingleEventPage,
 } = lazyLoadedComponents;
 
-const AppRouter = () => {
-    return (
-        <Suspense fallback={<Loader />}>
-            <Routes>
-                <Route path={PATHS.main} element={<AppLayout />}>
-                    <Route element={<MainLayout />}>
-                        <Route index element={<MainPage />} />
-                        <Route path={PATHS.events} element={<EventsPage />} />
-                        <Route
-                            path="/events/search/"
-                            element={<SearchPage />}
-                        />
-                        <Route
-                            path={PATHS.eventPage}
-                            element={<SingleEventPage />}
-                        />
-                        <Route path={PATHS.history} element={<HistoryPage />} />
-                        <Route
-                            path={PATHS.favorite}
-                            element={<FavoritePage />}
-                        />
-                    </Route>
-                    <Route path={PATHS.auth} element={<AuthLayout />}>
-                        <Route index element={<AuthPage />} />
-                        <Route
-                            path={PATHS.successResult}
-                            element={<SuccessResult />}
-                        />
-                        <Route
-                            path={PATHS.errorResult}
-                            element={<ErrorResult />}
-                        />
-                        <Route
-                            path={PATHS.errorDefault}
-                            element={<ErrorDefault />}
-                        />
-                        <Route
-                            path={PATHS.errorUserExistResult}
-                            element={<ErrorUserExistResult />}
-                        />
-                    </Route>
+const AppRouter = () => (
+    <Suspense fallback={<Loader />}>
+        <Routes>
+            <Route path={PATHS.main} element={<AppLayout />}>
+                <Route element={<MainLayout />}>
+                    <Route index element={<MainPage />} />
+                    <Route path={PATHS.events} element={<EventsPage />} />
+                    <Route path="/events/search/" element={<SearchPage />} />
+                    <Route
+                        path={PATHS.eventPage}
+                        element={<SingleEventPage />}
+                    />
+                    <Route path={PATHS.history} element={<HistoryPage />} />
+                    <Route path={PATHS.favorite} element={<FavoritePage />} />
                 </Route>
-            </Routes>
-        </Suspense>
-    );
-};
+                <Route path={PATHS.auth} element={<AuthLayout />}>
+                    <Route index element={<AuthPage />} />
+                    <Route
+                        path={PATHS.successResult}
+                        element={<SuccessResult />}
+                    />
+                    <Route path={PATHS.errorResult} element={<ErrorResult />} />
+                    <Route
+                        path={PATHS.errorDefault}
+                        element={<ErrorDefault />}
+                    />
+                    <Route
+                        path={PATHS.errorUserExistResult}
+                        element={<ErrorUserExistResult />}
+                    />
+                </Route>
+            </Route>
+        </Routes>
+    </Suspense>
+);
 
 export default AppRouter;

@@ -17,15 +17,13 @@ const items: TabsProps['items'] = [
     },
 ];
 
-const AuthCard = () => {
-    return (
-        <div className={s.card}>
-            <div className={s.logo}>
-                <Logo />
-            </div>
-            <Tabs items={items} centered indicator={{ size: 100 }} />
+const AuthCard = () => (
+    <div className={s.card}>
+        <div className={s.logo}>
+            <Logo />
         </div>
-    );
-};
+        <Tabs items={items} centered indicator={{ size: 100 }} />
+    </div>
+);
 
 export default AuthCard;

@@ -12,12 +12,12 @@ const { Title } = Typography;
 
 const FavoritePage = () => {
     const { currentUser } = useAuth();
-
     const userName = currentUser?.split('@')[0] + "'s";
 
     const { data: favoriteData } = useFetchFavoriteQuery(currentUser, {
         skip: !currentUser,
     });
+
     const favoriteIds = favoriteData && favoriteData.map((fav) => fav.eventId);
 
     const { data: { events } = {}, isLoading } = useGetAllEventsQuery(

@@ -23,12 +23,13 @@ const EventItem = ({ event }: Props) => {
     const [isHovered, setIsHovered] = useState(false);
     const navigate = useNavigate();
 
-    const [addFavorite, { isLoading: loadingAdd }] = useAddFavoriteMutation();
-    const [removeFavorite, { isLoading: loadingRemove }] =
-        useRemoveFavoriteMutation();
     const { data: favoriteData } = useFetchFavoriteQuery(currentUser, {
         skip: !currentUser,
     });
+
+    const [addFavorite, { isLoading: loadingAdd }] = useAddFavoriteMutation();
+    const [removeFavorite, { isLoading: loadingRemove }] =
+        useRemoveFavoriteMutation();
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -62,6 +63,7 @@ const EventItem = ({ event }: Props) => {
             }
         }
     };
+
     const buttonText =
         loadingRemove || loadingAdd ? (
             <LoadingOutlined />
