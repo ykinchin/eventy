@@ -5,6 +5,7 @@ import { AuthContext } from '../../../../providers/AuthContext';
 import { PATHS } from '../../../../shared/constants/paths';
 import CustomButton from '../../../shared/customButton/CustomButton';
 import Logo from '../../../shared/logo/Logo';
+import SearchComponent from '../../../shared/search/SearchComponent';
 import NavMenu from './NavMenu';
 import s from './mainHeader.module.scss';
 
@@ -12,8 +13,9 @@ const { Header } = Layout;
 const { Text } = Typography;
 
 const MainHeader = () => {
-    const { logOut, currentUser, isLoading } = useContext(AuthContext);
+    const { logOut, currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
+
     const handleOnClick = () => {
         if (currentUser) {
             logOut();
@@ -31,13 +33,15 @@ const MainHeader = () => {
                     </div>
                     <NavMenu />
                 </Flex>
-                <Flex align="center" gap={22} className={s.rightMenu}>
-                    <Text className={s.userLabel}>{currentUser}</Text>
-                    {!isLoading && (
+
+                <Flex align="center" gap={40} className={s.rightMenu}>
+                    <SearchComponent />
+                    <Flex align="center" gap={20} className={s.userInfo}>
+                        <Text className={s.userLabel}>{currentUser}</Text>
                         <CustomButton type="default" onClick={handleOnClick}>
                             {currentUser ? ' Logout' : 'Sign In'}
                         </CustomButton>
-                    )}
+                    </Flex>
                 </Flex>
             </Flex>
         </Header>
