@@ -1,10 +1,11 @@
 import { Menu, MenuProps } from 'antd';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../../../../hooks/useAuth';
 import { PATHS } from '../../../../shared/constants/paths';
 import s from './navMenu.module.scss';
 
-const items: MenuProps['items'] = [
+const navLinks: MenuProps['items'] = [
     {
         label: <Link to={PATHS.main}>Main</Link>,
         key: PATHS.main,
@@ -17,11 +18,18 @@ const items: MenuProps['items'] = [
         label: <Link to={PATHS.favorite}>Favorite</Link>,
         key: PATHS.favorite,
     },
+    {
+        label: <Link to={PATHS.history}>History</Link>,
+        key: PATHS.history,
+    },
 ];
 
 const NavMenu = () => {
-    const [current, setCurrent] = useState('');
+    const { currentUser } = useAuth();
     const location = useLocation();
+    const [current, setCurrent] = useState('');
+
+    const links = currentUser ? navLinks : navLinks.slice(0, 2);
 
     const onClick: MenuProps['onClick'] = (e) => {
         setCurrent(e.key);
@@ -37,7 +45,7 @@ const NavMenu = () => {
             selectedKeys={[current]}
             mode="horizontal"
             className={s.menu}
-            items={items}
+            items={links}
         />
     );
 };
