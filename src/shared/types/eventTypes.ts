@@ -1,5 +1,7 @@
 export type Sort = 'name,desc' | 'relevance,desc' | 'date,asc';
 
+export type FilteredEvent = Pick<PartialEvent, 'id' | 'name' | 'date'>;
+
 export type ResponseType = {
     _embedded: Events;
     page: Page;
@@ -18,22 +20,18 @@ export type Events = {
     events: EventType[];
 };
 
-type Link = {
-    href: string;
-    templated: boolean;
-};
-
-type Market = {
+export type SingleEventResponse = {
     id: string;
-};
-
-type Location = {
-    longitude: string;
-    latitude: string;
-};
-
-type Address = {
-    line1: string;
+    name: string;
+    startDate: string;
+    status: string;
+    image: string;
+    price: Partial<Price>;
+    promoter: string;
+    seatmap: string;
+    city: string;
+    country: string;
+    venueName: string;
 };
 
 export type City = {
@@ -61,12 +59,7 @@ export type Venue = {
     city: City;
     state: State;
     country: Country;
-    address: Address;
     location: Location;
-    markets: Market[];
-    _links: {
-        self: Link;
-    };
 };
 
 type Classification = {
@@ -88,19 +81,18 @@ type Classification = {
 type Image = {
     ratio: string;
     url: string;
-    width: number;
-    height: number;
-    fallback: boolean;
 };
 
 export type EventType = {
     name: string;
     type: string;
     id: string;
-    test: boolean;
     url: string;
     locale: string;
     images: Image[];
+    seatmap: {
+        staticUrl: string;
+    };
     sales: {
         public: {
             startDateTime: string;
@@ -124,16 +116,18 @@ export type EventType = {
     classifications?: Classification[];
     promoter: {
         id: string;
-    };
-    _links: {
-        self: Link;
-        attractions: Link[];
-        venues: Link[];
+        name: string;
     };
     _embedded: {
         venues: Venue[];
-        attractions: Venue[];
     };
+    priceRanges: Partial<Price>[];
+};
+
+type Price = {
+    currency: string;
+    max: number;
+    min: number;
 };
 
 export type Page = {
