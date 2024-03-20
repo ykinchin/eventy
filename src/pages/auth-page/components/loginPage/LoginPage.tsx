@@ -6,6 +6,7 @@ import LoginInput from '../../../../components/shared/loginInput/LoginInput';
 import PasswordInput from '../../../../components/shared/passwordInput/PasswordInput';
 import useLogin from '../../../../hooks/useLogin';
 import { UserCredentials } from '../../../../shared/types/userType';
+
 const LoginPage = () => {
     const [form] = useForm();
     const { loginUser, isLoading } = useLogin();
