@@ -103,6 +103,7 @@ const EventItem = ({ event }: Props) => {
                     </Flex>
                 </Flex>
             </Card>
+
             {currentUser && (
                 <CustomButton
                     onClick={handleToggleFavorite}

@@ -25,13 +25,16 @@ export const historyApi = createApi({
                 if (!email) {
                     return { data: null };
                 }
+
                 const userRef = doc(db, 'user', email);
+
                 await updateDoc(userRef, {
                     history: arrayUnion({
                         id: uuidv4(),
                         searchValue,
                     }),
                 });
+
                 return { data: null };
             },
             invalidatesTags: ['History'],
@@ -50,6 +53,7 @@ export const historyApi = createApi({
                 await updateDoc(userRef, {
                     history: filteredHistory,
                 });
+
                 return { data: null };
             },
             invalidatesTags: ['History'],
@@ -57,11 +61,13 @@ export const historyApi = createApi({
         getHistory: builder.query<HistoryType[], string | null>({
             async queryFn(email) {
                 if (!email) return { data: [] };
+
                 const historyRef = doc(db, 'user', email);
                 const historySnap = await getDoc(historyRef);
                 const history = historySnap.exists()
                     ? historySnap.data()?.history
                     : [];
+
                 return { data: history };
             },
             providesTags: ['History'],

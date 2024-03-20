@@ -23,6 +23,7 @@ const SingleEventPage = () => {
     const { data: favoriteData } = useFetchFavoriteQuery(currentUser, {
         skip: !currentUser,
     });
+
     const [addFavorite] = useAddFavoriteMutation();
     const [removeFavorite] = useRemoveFavoriteMutation();
 
@@ -88,6 +89,7 @@ const SingleEventPage = () => {
                             title="Ticket price:"
                             description={`${data?.price?.min}-${data?.price?.max} ${data?.price?.currency}`}
                         />
+
                         {data?.seatmap && (
                             <Link to={data.seatmap} style={{ fontSize: 18 }}>
                                 Seatmap

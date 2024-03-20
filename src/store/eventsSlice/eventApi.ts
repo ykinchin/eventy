@@ -33,22 +33,24 @@ type FilteredEventsParams = {
     searchValue?: string | null;
 };
 
+const formattedDate = moment().utc().format('YYYY-MM-DDTHH:mm:ss[Z]');
+
 export const eventApi = createApi({
     reducerPath: 'events',
     baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
     endpoints: (builder) => ({
         getAllEvents: builder.query<AllEvents, AllEventsParams>({
             query: ({ page, eventIds, searchValue }) => {
-                const formattedDate = moment()
-                    .utc()
-                    .format('YYYY-MM-DDTHH:mm:ss[Z]');
                 let queryString = `events.json?apikey=${import.meta.env.VITE_API_KEY}&size=${page ? '10' : '200'}&startDateTime=${formattedDate}`;
+
                 if (searchValue) {
                     queryString += `&keyword=${searchValue}`;
                 }
+
                 if (eventIds && eventIds.length > 0) {
                     queryString += `&id=${eventIds.join(',')}`;
                 }
+
                 if (page) {
                     queryString += `&page=${page}`;
                 }
@@ -59,16 +61,15 @@ export const eventApi = createApi({
         getSingleEvent: builder.query<Partial<SingleEventResponse>, EventId>({
             query: (eventId) => {
                 const queryString = `events.json?apikey=${import.meta.env.VITE_API_KEY}&id=${eventId}`;
+
                 return queryString;
             },
             transformResponse: transformSingleEvents,
         }),
         getFilteredEvents: builder.query<FilteredEvents, FilteredEventsParams>({
             query: ({ searchValue }) => {
-                const formattedDate = moment()
-                    .utc()
-                    .format('YYYY-MM-DDTHH:mm:ss[Z]');
                 const queryString = `events.json?apikey=${import.meta.env.VITE_API_KEY}&size=5&keyword=${searchValue}&startDateTime=${formattedDate}`;
+
                 return queryString;
             },
             transformResponse: transformFilteredEvents,
