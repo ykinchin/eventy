@@ -10,7 +10,7 @@ import { db } from '../../firebase/firebase';
 
 type FavoriteData = {
     email: string | null;
-    eventId: string;
+    eventId?: string;
 };
 
 type EventId = {
