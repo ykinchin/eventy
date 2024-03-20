@@ -1,7 +1,10 @@
 export const PATHS = {
     main: '/',
     events: '/events',
+    eventPage: '/:id',
+
     favorite: '/favorite',
+    history: '/history',
 
     auth: '/auth',
     login: '/auth/login',
