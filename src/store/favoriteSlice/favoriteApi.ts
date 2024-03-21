@@ -9,7 +9,7 @@ import {
 import { db } from '../../firebase/firebase';
 
 type FavoriteParams = {
-    email: string | null;
+    email: string;
     eventId?: string;
 };
 
@@ -25,6 +25,7 @@ export const favoriteApi = createApi({
         fetchFavorite: builder.query<EventId[] | null, string | null>({
             async queryFn(email) {
                 if (!email) return { data: null };
+
                 try {
                     const favoriteRef = doc(db, 'user', email);
                     const favoriteSnap = await getDoc(favoriteRef);
@@ -42,6 +43,7 @@ export const favoriteApi = createApi({
         addFavorite: builder.mutation<null, FavoriteParams>({
             async queryFn(data) {
                 if (!data.email) return { data: null };
+
                 try {
                     const ref = doc(db, 'user', data.email);
                     await updateDoc(ref, {
@@ -59,6 +61,7 @@ export const favoriteApi = createApi({
         removeFavorite: builder.mutation<null, FavoriteParams>({
             async queryFn(data) {
                 if (!data.email) return { data: null };
+
                 try {
                     const ref = doc(db, 'user', data.email);
                     await updateDoc(ref, {

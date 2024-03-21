@@ -39,6 +39,7 @@ export const historyApi = createApi({
             },
             invalidatesTags: ['History'],
         }),
+
         removeHistory: builder.mutation<null, RemoveHistoryParams>({
             async queryFn({ email, historyId, history }) {
                 if (!email) {
@@ -58,6 +59,7 @@ export const historyApi = createApi({
             },
             invalidatesTags: ['History'],
         }),
+
         getHistory: builder.query<HistoryType[], string | null>({
             async queryFn(email) {
                 if (!email) return { data: [] };
