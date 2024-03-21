@@ -4,9 +4,10 @@ import { ChangeEvent } from 'react';
 type Props = {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     value?: string;
+    size?: 'large' | 'small' | 'middle';
 };
 
-const LoginInput = ({ onChange, value }: Props) => (
+const LoginInput = ({ onChange, value, size = 'large' }: Props) => (
     <Form.Item
         name="email"
         rules={[
@@ -17,7 +18,7 @@ const LoginInput = ({ onChange, value }: Props) => (
         <Input
             name="email"
             placeholder="Email"
-            size="large"
+            size={size}
             onChange={onChange}
             autoComplete="off"
             value={value}
