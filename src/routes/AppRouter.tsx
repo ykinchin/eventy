@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Loader from '../components/shared/loader/Loader';
 import { PATHS } from '../shared/constants/paths';
+import { ProtectedRoute } from './ProtectedRoute';
 import { lazyLoadedComponents } from './lazyRoutes';
 
 const {
@@ -33,8 +34,22 @@ const AppRouter = () => (
                         path={PATHS.eventPage}
                         element={<SingleEventPage />}
                     />
-                    <Route path={PATHS.history} element={<HistoryPage />} />
-                    <Route path={PATHS.favorite} element={<FavoritePage />} />
+                    <Route
+                        path={PATHS.history}
+                        element={
+                            <ProtectedRoute>
+                                <HistoryPage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path={PATHS.favorite}
+                        element={
+                            <ProtectedRoute>
+                                <FavoritePage />
+                            </ProtectedRoute>
+                        }
+                    />
                 </Route>
                 <Route path={PATHS.auth} element={<AuthLayout />}>
                     <Route index element={<AuthPage />} />
