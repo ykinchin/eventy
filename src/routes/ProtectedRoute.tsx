@@ -10,7 +10,7 @@ interface Props {
 const ProtectedRoute = ({ children }: Props) => {
     const { currentUser, isLoading } = useAuth();
 
-    if (!currentUser && isLoading) {
+    if (!currentUser && !isLoading) {
         return <Navigate to={PATHS.main} replace />;
     }
 
