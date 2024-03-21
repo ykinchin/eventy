@@ -3,7 +3,7 @@ import { ReactNode, createContext, useEffect, useMemo, useState } from 'react';
 import { auth } from '../firebase/firebase';
 
 type Props = {
-    children?: ReactNode;
+    children: ReactNode;
 };
 
 type ContextType = {

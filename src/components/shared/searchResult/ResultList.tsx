@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FilteredEvent } from '../../../shared/types/eventTypes';
 import s from './resultList.module.scss';
 
-type Props = { events?: FilteredEvent[] };
+type Props = { events: FilteredEvent[] };
 
 const { Text } = Typography;
 

@@ -5,7 +5,7 @@ import EventItem from '../eventItem/EventItem';
 import Loader from '../loader/Loader';
 
 type Props = {
-    events?: PartialEvent[];
+    events: PartialEvent[];
     isLoading?: boolean;
 };
 
