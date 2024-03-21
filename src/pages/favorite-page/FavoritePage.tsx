@@ -1,9 +1,7 @@
 import { Flex, Typography } from 'antd';
-import { Navigate } from 'react-router-dom';
 import EventList from '../../components/shared/eventList/EventList';
 import Loader from '../../components/shared/loader/Loader';
 import { useAuth } from '../../hooks/useAuth';
-import { PATHS } from '../../shared/constants/paths';
 import { useGetAllEventsQuery } from '../../store/eventsSlice/eventApi';
 import { useFetchFavoriteQuery } from '../../store/favoriteSlice/favoriteApi';
 import EmptyPage from './components/emptyPage/EmptyPage';
@@ -26,10 +24,6 @@ const FavoritePage = () => {
         },
         { skip: !currentUser },
     );
-
-    if (!currentUser && !isLoading) {
-        return <Navigate to={PATHS.main} replace />;
-    }
 
     return (
         <>
