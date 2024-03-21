@@ -5,7 +5,7 @@ type Props = {
     type?: 'dashed' | 'default' | 'primary' | 'link' | 'text';
     block?: boolean;
     size?: 'large' | 'middle' | 'small';
-    onClick?: () => void;
+    onClick: () => void;
     backgroundColor?: string;
     className?: string;
 };
