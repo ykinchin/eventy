@@ -37,6 +37,14 @@ _Приложение для отслеживания мероприятий_
 ### 2 уровень (необязательный)
 
 -   [x] Используeтся TypeScript
+-   [x] Используется Storybook: [CustomButton](https://github.com/ykinchin/eventy/blob/main/src/components/shared/customButton/CustomButton.stories.tsx) и [LoginInput](https://github.com/ykinchin/eventy/blob/main/src/components/shared/loginInput/LoginInput.stories.tsx)
 -   [x] Используется Firebase для [учетных записей пользователей](https://github.com/ykinchin/eventy/blob/main/src/hooks/useRegistration.ts) и их [Избранного](https://github.com/ykinchin/eventy/blob/main/src/store/favoriteSlice/favoriteApi.ts) и [Истории поиска](https://github.com/ykinchin/eventy/blob/main/src/store/historySlice/historyApi.ts). Обновление информации через инвалидацию кеша RTK Query
 -   [x] Настроен [CI / CD](https://github.com/ykinchin/eventy/blob/main/.github/workflows/main.yml)
 -   [x] Реализована [виртуализация списка](https://github.com/ykinchin/eventy/blob/main/src/components/shared/eventList/EventList.tsx)
+
+### **Дополнительно**
+
+-   [x] Проект собран при помощи Vite
+-   [x] Для работы со стилями использовался [Ant Design](https://github.com/ykinchin/eventy/blob/main/src/providers/AntdProvider.tsx) и [Css modules](https://github.com/ykinchin/eventy/blob/main/src/components/shared/eventItem/eventItem.module.scss)
+-   [x] Для форматирования даты использовался [moment.js](https://github.com/ykinchin/eventy/blob/main/src/store/eventsSlice/eventApi.ts)
+-   [x] Для назначения уникальных id используется [uuid](https://github.com/ykinchin/eventy/blob/main/src/store/historySlice/historyApi.ts)
