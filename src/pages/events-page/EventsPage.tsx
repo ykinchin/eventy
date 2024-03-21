@@ -42,7 +42,14 @@ const EventsPage = () => {
                         {isError ? (
                             <Empty />
                         ) : (
-                            <EventList isLoading={isLoading} events={events} />
+                            <>
+                                {events && (
+                                    <EventList
+                                        isLoading={isLoading}
+                                        events={events}
+                                    />
+                                )}
+                            </>
                         )}
                     </Flex>
                     <Flex justify="center">

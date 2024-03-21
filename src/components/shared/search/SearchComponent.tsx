@@ -57,10 +57,8 @@ const SearchComponent = () => {
                     onSearch={handleSearchClick}
                 />
 
-                {inputFocus && searchValue && (
-                    <div>
-                        <ResultList events={events} />
-                    </div>
+                {events && inputFocus && searchValue && (
+                    <ResultList events={events} />
                 )}
             </Flex>
         </Flex>

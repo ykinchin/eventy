@@ -42,7 +42,7 @@ const FavoritePage = () => {
                     ) : (
                         <Flex vertical gap={40}>
                             <Title level={3}>{userName} favorite events</Title>
-                            <EventList events={events} />
+                            {events && <EventList events={events} />}
                         </Flex>
                     )}
                 </>

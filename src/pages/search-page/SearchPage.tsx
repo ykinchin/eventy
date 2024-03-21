@@ -32,7 +32,7 @@ const SearchPage = () => {
                             <Title level={4}>
                                 Search Results for "{searchValue}"
                             </Title>
-                            <EventList events={events} />
+                            {events && <EventList events={events} />}
                         </Flex>
                     )}
                 </>
